@@ -38,7 +38,7 @@ METIERS = [
 CLIENTS = [
     # (nom, fichier dans assets/img/clients — logo monochrome utilisé en masque, ratio largeur/hauteur)
     ("Chikin Bang", "chikin-bang.png", 1.633),
-    ("Cupidex", "cupidex.png", 1.899),
+    ("Cupidex", "cupidex.png", 1.295),
     ("Gomu", "gomu.png", 1.093),
     ("Birdz Hot Chicken", "birdz.png", 1.0),
     ("First Touch", "first-touch.svg", 2.057),
@@ -57,8 +57,8 @@ PROJETS = [
 # (assets/img/clients/couleur) sur le fond de la marque. Aucun aperçu du travail.
 LOGOS_PROJETS = {
     # slug: (logo monochrome, ratio, fond de marque au survol)
-    "cupidex-app": ("cupidex.png", 1.899, "linear-gradient(135deg, #1f1168, #7655ca)"),
-    "cupidex": ("cupidex.png", 1.899, "linear-gradient(135deg, #1f1168, #7655ca)"),  # mot en Poppins ExtraBold Italic, comme cupidex.fr
+    "cupidex-app": ("cupidex.png", 1.295, "linear-gradient(135deg, #1f1168, #7655ca)"),
+    "cupidex": ("cupidex.png", 1.295, "linear-gradient(135deg, #1f1168, #7655ca)"),  # mot en Poppins ExtraBold Italic, comme cupidex.fr
     "paulhivert": ("paulhivert.png", 5.193, "radial-gradient(circle at 60% 20%, #3c4952, #191a1e 70%)"),
     "birdz": ("birdz.png", 1.0, "#ffffff"),
     "raffine": ("raffine.png", 1.353, "#ffffff"),
