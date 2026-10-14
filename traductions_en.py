@@ -641,8 +641,8 @@ EN = {
     "On rembobine. Même soir, même recherche.": "Let's rewind. Same night, same search.",
     "Cette fois, tout s'affiche": "This time, everything loads",
     "avant qu'il ait cligné des yeux.": "before they can blink.",
-    "Des écrans qu'on comprend sans réfléchir, qui s'affichent sans attendre. Ici, l'application Cupidex, conçue et développée par Frostbird.":
-        "Screens you understand without thinking, that load without waiting. Here, the Cupidex app, designed and built by Frostbird.",
+    "Des écrans qu'on comprend sans réfléchir, qui s'affichent sans attendre.":
+        "Screens you understand without thinking, that load without waiting.",
     "Et votre site, il garde ses visiteurs ?": "And your site, does it keep its visitors?",
     "On s'occupe du chrono.": "We'll handle the clock.",
 

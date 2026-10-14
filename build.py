@@ -53,6 +53,11 @@ PROJETS = [
     ("photo", "Birdz", "2025", "birdz/birdz-02.jpg", "birdz"),
     ("photo", "Championnat National", "2025 – 2026", "national/national-13.jpg", "national"),
 ] + [(e["cat"], e["titre"], e["date"], e["cover"], e["slug"]) for e in PORTFOLIO]  # branding puis design
+
+# Projets masqués pour l'instant : contenu conservé, mais ni carte, ni page, ni « Autres projets ».
+# Pour en remettre un en ligne, le retirer de cet ensemble.
+MASQUES = {"cupidex-app"}
+PROJETS = [p for p in PROJETS if not (len(p) == 5 and p[4] in MASQUES)]
 # Logo du client posé sur la carte projet (fichier dans assets/img/clients, ratio largeur/hauteur).
 # La carte montre le logo en crème sur bordeaux ; au survol, le même logo dans ses vraies couleurs
 # (assets/img/clients/couleur) sur le fond de la marque. Aucun aperçu du travail.
@@ -998,7 +1003,11 @@ if __name__ == "__main__":
     for k in PAGES:
         prestation(k)
     for slug in ETUDES:
-        etude(slug)
+        if slug in MASQUES:  # page masquée : on retire aussi une éventuelle version déjà publiée
+            for f in (OUT / f"projet-{slug}.html", OUT / "en" / f"projet-{slug}.html"):
+                f.unlink(missing_ok=True)
+        else:
+            etude(slug)
     print("ok →", OUT, "(FR + EN)")
     if MANQUANTS:
         print(f"{len(MANQUANTS)} textes sans traduction anglaise (à ajouter dans traductions_en.py) :")
