@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" class="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Frostbird</title>
+<meta name="description" content="Frostbird, creative agency: branding, graphic design, web &amp; apps, photography.">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css?v=05c477e2">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Monochromie bordeaux : sombres → bordeaux profond, moyens → bordeaux clair, clairs → crème -->
+  <filter id="da-tritone" color-interpolation-filters="sRGB">
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues="0.165 0.420 0.988"/>
+      <feFuncG type="table" tableValues="0 0.165 0.886"/>
+      <feFuncB type="table" tableValues="0.059 0.243 0.820"/>
+    </feComponentTransfer>
+  </filter>
+</svg>
+
+<header class="nav">
+  <div class="nav-lang" aria-label="Language"><a href="/contact.html" hreflang="fr" lang="fr" data-lang="fr">FR</a><span>/</span><a href="/en/contact.html" hreflang="en" lang="en" data-lang="en" aria-current="true">EN</a></div>
+  <a class="nav-brand" href="index.html" aria-label="Frostbird — home">
+    <span class="logo-picto " role="img" aria-label="Frostbird"></span><span class="logo-word " role="img" aria-label="Frostbird"></span>
+  </a>
+  <nav class="nav-links"><a href="prestations.html">Services</a><a href="works.html">Works</a><a href="contact.html" aria-current="page">Contact</a></nav>
+  <button class="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+</header>
+<div class="menu" id="menu" hidden>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="prestations.html">Services</a>
+    <a href="works.html">Works</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="menu-bas"><div class="nav-lang" aria-label="Language"><a href="/contact.html" hreflang="fr" lang="fr" data-lang="fr">FR</a><span>/</span><a href="/en/contact.html" hreflang="en" lang="en" data-lang="en" aria-current="true">EN</a></div><a class="menu-mail" href="mailto:hello@frostbird.fr">hello@frostbird.fr</a></div>
+</div>
+<main>
+
+<section class="chapter contact" id="contact">
+  <div class="wrap">
+    <h1 class="display contact-title">Shall we talk?</h1>
+    <a class="contact-mail display" href="mailto:hello@frostbird.fr">hello@frostbird.fr</a>
+    <form class="form" novalidate>
+      <div class="field"><label for="f-nom">Name *</label><input id="f-nom" name="nom" placeholder="Your name" required autocomplete="name"></div>
+      <div class="field"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" placeholder="you@company.com" required autocomplete="email"></div>
+      <div class="field"><label for="f-tel">Phone</label><input id="f-tel" name="tel" type="tel" placeholder="06 00 00 00 00" autocomplete="tel"></div>
+      <div class="field"><label for="f-ent">Company</label><input id="f-ent" name="entreprise" placeholder="Your company name" autocomplete="organization"></div>
+      <fieldset class="field full"><legend>What you need</legend><div class="chips"><label class="chip"><input type="checkbox" name="besoin" value="branding"><span>Branding</span></label><label class="chip"><input type="checkbox" name="besoin" value="design"><span>Graphic design</span></label><label class="chip"><input type="checkbox" name="besoin" value="web"><span>Web &amp; Apps</span></label><label class="chip"><input type="checkbox" name="besoin" value="photo"><span>Photography</span></label></div></fieldset>
+      <div class="field full"><label for="f-msg">Message *</label><textarea id="f-msg" name="message" rows="5" placeholder="Tell us briefly about your project" required></textarea></div>
+      <div class="form-foot full">
+        <label class="consent"><input type="checkbox" name="consent" required><span>I agree that Frostbird may use this information to get back to me about my request.</span></label>
+        <button class="btn" type="submit">Send</button>
+      </div>
+      <p class="form-status full" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <a class="footer-logo" href="index.html" aria-label="Frostbird — home"><span class="logo-picto " role="img" aria-label="Frostbird"></span><span class="logo-word " role="img" aria-label="Frostbird"></span></a>
+    <div>
+      <h4>Navigation</h4>
+      <a href="prestations.html">Services</a>
+      <a href="works.html">Works</a>
+      <a href="index.html#references">Clients</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="mentions-legales.html">Legal notice</a>
+      <a href="mentions-legales.html#confidentialite">Privacy policy</a>
+      <a href="mentions-legales.html#cookies">Cookie policy</a>
+      <a href="mentions-legales.html#cgu">Terms of use</a>
+    </div>
+    <div>
+      <h4>Publisher</h4>
+      <p>FROSTBIRD<br>Company being registered<br><a href="mailto:hello@frostbird.fr">hello@frostbird.fr</a></p>
+    </div>
+  </div>
+  <div class="footer-social"><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Behance</a><a href="#">TikTok</a></div>
+  <p class="footer-copy">© 2026 Frostbird — All rights reserved.</p>
+</footer>
+<script src="/assets/js/site.js?v=338e571d" defer></script>
+</body>
+</html>

@@ -38,6 +38,12 @@ filtres.forEach((btn) =>
 );
 
 // Formulaire de contact (pas encore branché : validation + message seulement)
+const EN = document.documentElement.lang === "en";
+const T = EN
+  ? { consent: "Please tick the consent box.", requis: "Please fill in the required fields (*).",
+      merci: "Thank you! Your message is on its way, we'll get back to you very soon." }
+  : { consent: "Merci de cocher la case de consentement.", requis: "Merci de remplir les champs obligatoires (*).",
+      merci: "Merci ! Votre message est bien parti, on revient vers vous très vite." };
 const form = document.querySelector(".form");
 if (form) {
   const besoin = new URLSearchParams(location.search).get("besoin");
@@ -56,14 +62,12 @@ if (form) {
     });
     if (firstBad) {
       status.className = "form-status full err";
-      status.textContent = firstBad.name === "consent"
-        ? "Merci de cocher la case de consentement."
-        : "Merci de remplir les champs obligatoires (*).";
+      status.textContent = firstBad.name === "consent" ? T.consent : T.requis;
       firstBad.focus();
       return;
     }
     status.className = "form-status full ok";
-    status.textContent = "Merci ! Votre message est bien parti, on revient vers vous très vite.";
+    status.textContent = T.merci;
     form.reset();
   });
 }

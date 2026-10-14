@@ -7,5 +7,7 @@ Site de l'agence Frostbird — site statique généré par `build.py`.
 - Styles et scripts : `public/assets/css/style.css`, `public/assets/js/site.js` (édités à la main).
 - Images d'origine (JPG/PNG) dans `media/` : le build en tire des WebP et des vignettes 800 px
   dans `public/` (seules ces versions sont en ligne). Ajouter une image = la déposer dans `media/`.
+- Version anglaise : générée dans `public/en/` à partir des pages françaises, avec les textes de
+  `traductions_en.py`. Le build liste les textes français qui n'ont pas encore de traduction.
 - Générer : `python3 build.py` (Pillow requis) → met à jour `public/`.
 - En ligne : Vercel publie `public/` tel quel à chaque push sur `main` (cf. `vercel.json`).

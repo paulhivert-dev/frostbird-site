@@ -100,7 +100,7 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 760px) {
   .nav { grid-template-columns: auto 1fr auto; }
-  .nav-lang { display: none; }
+  .nav-lang, .nav-gauche { display: none; }
   .nav-links { display: none; }
   .nav-brand { grid-column: 1; }
   .nav-burger {
@@ -679,3 +679,12 @@ span.work-logo {
 .fable-liste a span { color: var(--rouge); font-size: .6em; transition: transform .25s; }
 .fable-liste a:hover { color: var(--rouge); padding-left: 16px; }
 .fable-liste a:hover span { transform: translate(6px, -6px); }
+
+/* Sélecteur de langue : dans le menu des pages à « Retour », et dans le menu mobile */
+.nav-gauche { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 28px); }
+.nav-gauche .nav-lang { padding-left: clamp(14px, 2.4vw, 28px); border-left: 1.5px solid rgba(59, 0, 22, .25); }
+.nav-lang a { text-decoration: none; }
+.nav-lang a:hover { color: var(--rouge); }
+.menu-bas { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.menu .nav-lang { display: flex; gap: 8px; font-family: var(--mono); font-size: 15px; letter-spacing: .1em; }
+.menu .nav-lang a[aria-current] { color: var(--rouge); }

@@ -16,6 +16,7 @@ from pathlib import Path
 
 from contenu_portfolio import PORTFOLIO
 from contenu_prestations import PAGES
+from traductions_en import EN, MOTIFS
 
 OUT = Path(__file__).parent / "public"
 # Images d'origine (JPG/PNG pleine qualité) : hors du dossier publié. Le build en tire des WebP
@@ -271,7 +272,16 @@ def logo(kind, cls=""):
     return f'<span class="logo-{kind} {cls}" role="img" aria-label="{AGENCE}"></span>'
 
 
-def header(active, retour=None):
+def selecteur_langue(fichier):
+    """FR / EN : la même page dans l'autre langue. Construit en français ; la version anglaise
+    déplace aria-current (cf. traduire)."""
+    chemin = "" if fichier == "index.html" else fichier
+    return (f'<div class="nav-lang" aria-label="Langue">'
+            f'<a href="/{chemin}" hreflang="fr" lang="fr" data-lang="fr" aria-current="true">FR</a><span>/</span>'
+            f'<a href="/en/{chemin}" hreflang="en" lang="en" data-lang="en">EN</a></div>')
+
+
+def header(active, retour=None, fichier="index.html"):
     def link(href, label, key):
         cur = ' aria-current="page"' if key == active else ""
         return f'<a href="{href}"{cur}>{label}</a>'
@@ -281,9 +291,12 @@ def header(active, retour=None):
         link("works.html", "Works", "works"),
         link("contact.html", "Contacts", "contact"),
     ])
-    gauche = (f'<a class="nav-back" href="{retour}"><span aria-hidden="true">←</span> Retour</a>' if retour else
-              '<div class="nav-lang" aria-label="Langue">'
-              '<a href="#" aria-current="true">FR</a><span>/</span><a href="#" title="Version anglaise à venir">EN</a></div>')
+    langues = selecteur_langue(fichier)
+    if retour:  # « ← Retour » puis le sélecteur de langue, à gauche
+        gauche = (f'<div class="nav-gauche"><a class="nav-back" href="{retour}"><span aria-hidden="true">←</span> '
+                  f'Retour</a>{langues}</div>')
+    else:
+        gauche = langues
     return f"""
 <header class="nav">
   {gauche}
@@ -300,7 +313,7 @@ def header(active, retour=None):
     <a href="works.html">Works</a>
     <a href="contact.html">Contacts</a>
   </nav>
-  <a class="menu-mail" href="mailto:{EMAIL}">{EMAIL}</a>
+  <div class="menu-bas">{langues}<a class="menu-mail" href="mailto:{EMAIL}">{EMAIL}</a></div>
 </div>"""
 
 
@@ -416,6 +429,71 @@ def optimiser_medias(html):
     return html.replace("<img ", '<img decoding="async" ')
 
 
+def absolus(html):
+    """Chemins des fichiers en absolu (/assets/…) : les mêmes pages servent aussi depuis /en/."""
+    import re
+    return re.sub(r'(["(])assets/', r'\1/assets/', html)
+
+
+MANQUANTS = set()  # textes français sans traduction anglaise (listés à la fin du build)
+
+
+def en(texte):
+    """Traduction d'un texte (espaces normalisés) : dictionnaire, puis motifs, sinon inchangé."""
+    import re
+    if texte in EN:
+        return EN[texte]
+    for motif, modele in MOTIFS:
+        m = re.match(motif, texte)
+        if m:
+            return modele.format(*(en(g) if not g.isdigit() else g for g in m.groups()))
+    if re.search(r"[a-zà-ÿ]{3}", texte) and texte not in NOMS_PROPRES:
+        MANQUANTS.add(texte)
+    return texte
+
+
+# Textes laissés tels quels en anglais sans les signaler (marques, noms, adresses…)
+NOMS_PROPRES = {
+    "Frostbird", "Cupidex", "Gomu", "Gomu Californian", "Birdz", "Raffiné", "Spike", "Rooster",
+    "Happy Propaganda", "First Touch", "Le Charles", "Oh Damned", "Somar", "Chikin Bang", "Deezer Premium",
+    "Atlantic Bateaux Piriac", "Atlantic Bateaux", "Paul Hivert", "Quentin Merlin", "Ilan Djadja", "Aïman",
+    "Aïman & Ilan", "UEFA Youth League", "Europa League", "Birdz Hot Chicken", "Instagram", "LinkedIn",
+    "Behance", "TikTok", "Works", "hello@frostbird.fr", "cupidex.fr", "paulhivert.com", "Born to fly",
+    "Tom Mabon, Louis Leroux & Mathis Philippe (FC Nantes)", "Storyboard", "Branding", "Packaging",
+    "Naming", "Illustration", "Concept", "Brief", "Composition", "Animation", "Menu", "Le Somar",
+    "Motion design", "UI design", "Concept & UX", "Date", "Navigation", "Contact", "Web & Apps",
+}
+
+
+def traduire(html):
+    """Version anglaise d'une page française : textes, attributs, langue, sélecteur FR / EN."""
+    import re
+    from html import unescape, escape
+
+    def texte(m):
+        brut = m.group(1)
+        propre = " ".join(unescape(brut).split())
+        if not re.search(r"[A-Za-zÀ-ÿ]", propre):
+            return m.group(0)
+        debut = brut[: len(brut) - len(brut.lstrip())]
+        fin = brut[len(brut.rstrip()):]
+        return ">" + debut + escape(en(propre), quote=False) + fin + "<"
+
+    def attribut(m):
+        nom, val = m.group(1), m.group(2)
+        propre = " ".join(unescape(val).split())
+        if not re.search(r"[A-Za-zÀ-ÿ]", propre) or "width=device-width" in propre:
+            return m.group(0)
+        return f'{nom}="{escape(en(propre))}"'
+
+    html = re.sub(r">([^<>]+)<", texte, html)
+    html = re.sub(r'\b(alt|aria-label|title|placeholder|content)="([^"]*)"', attribut, html)
+    html = html.replace('<html lang="fr"', '<html lang="en"', 1)
+    html = html.replace('data-lang="fr" aria-current="true"', 'data-lang="fr"')
+    html = html.replace('data-lang="en">', 'data-lang="en" aria-current="true">')
+    return html
+
+
 def page(fichier, titre, body, active="", classe="", retour=None):
     full_title = f"{titre} — {AGENCE}" if titre else f"{AGENCE} — {BASELINE}"
     html = f"""<!doctype html>
@@ -443,7 +521,7 @@ def page(fichier, titre, body, active="", classe="", retour=None):
     </feComponentTransfer>
   </filter>
 </svg>
-{header(active, retour)}
+{header(active, retour, fichier)}
 <main>
 {body}
 </main>
@@ -452,7 +530,10 @@ def page(fichier, titre, body, active="", classe="", retour=None):
 </body>
 </html>
 """
-    (OUT / fichier).write_text(optimiser_medias(html), encoding="utf-8")
+    html = absolus(optimiser_medias(html))
+    (OUT / fichier).write_text(html, encoding="utf-8")
+    (OUT / "en").mkdir(exist_ok=True)
+    (OUT / "en" / fichier).write_text(traduire(html), encoding="utf-8")
 
 
 # --- Pages -------------------------------------------------------------------
@@ -917,4 +998,8 @@ if __name__ == "__main__":
         prestation(k)
     for slug in ETUDES:
         etude(slug)
-    print("ok →", OUT)
+    print("ok →", OUT, "(FR + EN)")
+    if MANQUANTS:
+        print(f"{len(MANQUANTS)} textes sans traduction anglaise (à ajouter dans traductions_en.py) :")
+        for t in sorted(MANQUANTS):
+            print("  -", t)
