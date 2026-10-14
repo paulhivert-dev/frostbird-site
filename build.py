@@ -361,6 +361,13 @@ def contact_section(titre_tag="h2"):
 </section>"""
 
 
+def empreinte(fichier):
+    """Empreinte courte du contenu : change à chaque modification, ce qui force les navigateurs
+    à recharger le CSS / JS malgré la mise en cache d'une semaine (cf. vercel.json)."""
+    import hashlib
+    return hashlib.sha1((OUT / fichier).read_bytes()).hexdigest()[:8]
+
+
 def vignette(im):
     """Nom de la vignette de galerie (800 px de large) ; générée par optimiser_medias."""
     return im.rsplit(".", 1)[0] + "-800.webp"
@@ -422,7 +429,7 @@ def page(fichier, titre, body, active="", classe="", retour=None):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v={empreinte("assets/css/style.css")}">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -441,7 +448,7 @@ def page(fichier, titre, body, active="", classe="", retour=None):
 {body}
 </main>
 {footer()}
-<script src="assets/js/site.js" defer></script>
+<script src="assets/js/site.js?v={empreinte("assets/js/site.js")}" defer></script>
 </body>
 </html>
 """
