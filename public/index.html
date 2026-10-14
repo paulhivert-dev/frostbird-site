@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr" class="snap">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frostbird — Agence créative</title>
+<meta name="description" content="Frostbird, agence créative : branding, design graphique, web & apps, photographie.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Monochromie bordeaux : sombres → bordeaux profond, moyens → bordeaux clair, clairs → crème -->
+  <filter id="da-tritone" color-interpolation-filters="sRGB">
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues="0.165 0.420 0.988"/>
+      <feFuncG type="table" tableValues="0 0.165 0.886"/>
+      <feFuncB type="table" tableValues="0.059 0.243 0.820"/>
+    </feComponentTransfer>
+  </filter>
+</svg>
+
+<header class="nav">
+  <div class="nav-lang" aria-label="Langue"><a href="#" aria-current="true">FR</a><span>/</span><a href="#" title="Version anglaise à venir">EN</a></div>
+  <a class="nav-brand" href="index.html" aria-label="Frostbird — accueil">
+    <span class="logo-picto " role="img" aria-label="Frostbird"></span><span class="logo-word " role="img" aria-label="Frostbird"></span>
+  </a>
+  <nav class="nav-links"><a href="prestations.html">Prestations</a><a href="works.html">Works</a><a href="contact.html">Contacts</a></nav>
+  <button class="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+</header>
+<div class="menu" id="menu" hidden>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="prestations.html">Prestations</a>
+    <a href="works.html">Works</a>
+    <a href="contact.html">Contacts</a>
+  </nav>
+  <a class="menu-mail" href="mailto:hello@frostbird.fr">hello@frostbird.fr</a>
+</div>
+<main>
+
+<section class="chapter hero">
+  <div class="wrap hero-grid">
+    <div class="hero-brand">
+      <h1 class="hero-lockup"><span class="logo-picto hero-picto" role="img" aria-label="Frostbird"></span><span class="logo-word hero-word" role="img" aria-label="Frostbird"></span><span class="sr">Frostbird</span></h1>
+      <p class="mono hero-baseline">Agence créative pour marques qui veulent briller</p>
+    </div>
+    <ul class="hero-metiers display"><li><a href="prestation-branding.html">Branding</a></li><li><a href="prestation-design.html">Design graphique</a></li><li><a href="prestation-web.html">Web & Apps</a></li><li><a href="prestation-photo.html">Photographie</a></li></ul>
+  </div>
+  <a class="hero-down" href="#references" aria-label="Défiler vers les références">↓</a>
+</section>
+
+<section class="chapter references" id="references">
+  <div class="wrap">
+    <h2 class="display section-title">Ils nous font confiance</h2>
+    <p class="mono section-sub">Ils ont confié leur image à Frostbird</p>
+    <ul class="clients"><li class="client" style="--m: url(../img/clients/chikin-bang.png); --w: 1.278; aspect-ratio: 1.633"><span class="sr">Chikin Bang</span></li><li class="client" style="--m: url(../img/clients/cupidex.svg); --w: 1.131; aspect-ratio: 1.279"><span class="sr">Cupidex</span></li><li class="client" style="--m: url(../img/clients/gomu.png); --w: 1.045; aspect-ratio: 1.093"><span class="sr">Gomu</span></li><li class="client" style="--m: url(../img/clients/birdz.png); --w: 1.000; aspect-ratio: 1.0"><span class="sr">Birdz Hot Chicken</span></li><li class="client" style="--m: url(../img/clients/first-touch.svg); --w: 1.434; aspect-ratio: 2.057"><span class="sr">First Touch</span></li></ul>
+    <a class="big-link display" href="works.html">Nos projets <span aria-hidden="true">↗</span></a>
+  </div>
+</section>
+
+<section class="chapter contact" id="contact">
+  <div class="wrap">
+    <h2 class="display contact-title">On en parle&nbsp;?</h2>
+    <a class="contact-mail display" href="mailto:hello@frostbird.fr">hello@frostbird.fr</a>
+    <form class="form" novalidate>
+      <div class="field"><label for="f-nom">Nom *</label><input id="f-nom" name="nom" placeholder="Votre nom" required autocomplete="name"></div>
+      <div class="field"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" placeholder="vous@entreprise.com" required autocomplete="email"></div>
+      <div class="field"><label for="f-tel">Téléphone</label><input id="f-tel" name="tel" type="tel" placeholder="06 00 00 00 00" autocomplete="tel"></div>
+      <div class="field"><label for="f-ent">Entreprise</label><input id="f-ent" name="entreprise" placeholder="Nom de votre structure" autocomplete="organization"></div>
+      <fieldset class="field full"><legend>Votre besoin</legend><div class="chips"><label class="chip"><input type="checkbox" name="besoin" value="branding"><span>Branding</span></label><label class="chip"><input type="checkbox" name="besoin" value="design"><span>Design graphique</span></label><label class="chip"><input type="checkbox" name="besoin" value="web"><span>Web & Apps</span></label><label class="chip"><input type="checkbox" name="besoin" value="photo"><span>Photographie</span></label></div></fieldset>
+      <div class="field full"><label for="f-msg">Message *</label><textarea id="f-msg" name="message" rows="5" placeholder="Parlez-nous brièvement de votre projet" required></textarea></div>
+      <div class="form-foot full">
+        <label class="consent"><input type="checkbox" name="consent" required><span>J'accepte que Frostbird utilise ces informations pour me recontacter au sujet de ma demande.</span></label>
+        <button class="btn" type="submit">Envoyer</button>
+      </div>
+      <p class="form-status full" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+<section class="slogan">
+  <p class="display fit">Born to fly</p>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <a class="footer-logo" href="index.html" aria-label="Frostbird — accueil"><span class="logo-picto " role="img" aria-label="Frostbird"></span><span class="logo-word " role="img" aria-label="Frostbird"></span></a>
+    <div>
+      <h4>Navigation</h4>
+      <a href="prestations.html">Prestations</a>
+      <a href="works.html">Works</a>
+      <a href="index.html#references">Références</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <h4>Légal</h4>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="mentions-legales.html#confidentialite">Politique de confidentialité</a>
+      <a href="mentions-legales.html#cookies">Gestion des cookies</a>
+      <a href="mentions-legales.html#cgu">CGU</a>
+    </div>
+    <div>
+      <h4>Éditeur</h4>
+      <p>FROSTBIRD<br>Société en cours d'immatriculation<br><a href="mailto:hello@frostbird.fr">hello@frostbird.fr</a></p>
+    </div>
+  </div>
+  <div class="footer-social"><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Behance</a><a href="#">TikTok</a></div>
+  <p class="footer-copy">© 2026 Frostbird — Tous droits réservés.</p>
+</footer>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>

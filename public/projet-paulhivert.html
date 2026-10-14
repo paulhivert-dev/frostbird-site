@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="fr" class="snap">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio de Paul Hivert — Frostbird</title>
+<meta name="description" content="Frostbird, agence créative : branding, design graphique, web & apps, photographie.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Monochromie bordeaux : sombres → bordeaux profond, moyens → bordeaux clair, clairs → crème -->
+  <filter id="da-tritone" color-interpolation-filters="sRGB">
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues="0.165 0.420 0.988"/>
+      <feFuncG type="table" tableValues="0 0.165 0.886"/>
+      <feFuncB type="table" tableValues="0.059 0.243 0.820"/>
+    </feComponentTransfer>
+  </filter>
+</svg>
+
+<header class="nav">
+  <a class="nav-back" href="works.html"><span aria-hidden="true">←</span> Retour</a>
+  <a class="nav-brand" href="index.html" aria-label="Frostbird — accueil">
+    <span class="logo-picto " role="img" aria-label="Frostbird"></span><span class="logo-word " role="img" aria-label="Frostbird"></span>
+  </a>
+  <nav class="nav-links"><a href="prestations.html">Prestations</a><a href="works.html" aria-current="page">Works</a><a href="contact.html">Contacts</a></nav>
+  <button class="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+</header>
+<div class="menu" id="menu" hidden>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="prestations.html">Prestations</a>
+    <a href="works.html">Works</a>
+    <a href="contact.html">Contacts</a>
+  </nav>
+  <a class="menu-mail" href="mailto:hello@frostbird.fr">hello@frostbird.fr</a>
+</div>
+<main>
+
+<section class="chapter case-hero">
+  <span class="logo-picto case-bg" role="img" aria-label="Frostbird"></span>
+  <div class="wrap case-hero-inner">
+    <span class="tag tag-static">Web & Apps</span>
+    <h1 class="display case-title">Portfolio de Paul Hivert</h1>
+    <p class="case-sub display">Un écrin sombre et sur mesure pour le portfolio d'un directeur artistique</p>
+    <p class="case-intro">Paul Hivert est directeur artistique et chef de projets : logos, affiches, motion design, photographie, print. Son portfolio devait présenter une trentaine de projets sans jamais leur voler la vedette, et montrer son exigence graphique dès la première seconde.</p>
+    <a class="btn-outline" href="https://www.paulhivert.com/" target="_blank" rel="noopener">Voir le site en ligne <span aria-hidden="true">↗</span></a>
+    <dl class="case-meta">
+      <div><dt>Destiné à</dt><dd>Paul Hivert</dd></div>
+      <div><dt>Réalisé par</dt><dd>Frostbird</dd></div>
+      <div><dt>Date</dt><dd>Septembre 2026</dd></div>
+    </dl>
+  </div>
+  <a class="hero-down" href="#processus" aria-label="Défiler vers le processus">↓</a>
+</section>
+
+<section class="chapter process" id="processus">
+  <div class="wrap">
+    <h2 class="display section-title">Le processus</h2>
+    <ul class="services"><li>Direction artistique</li><li>Lettrage sur mesure</li><li>Développement</li><li>Mise en ligne</li></ul>
+    <ol class="steps">
+      <li class="step">
+        <span class="step-num mono">01</span>
+        <h3 class="display">Audit & reprise</h3>
+        <p>Récupération du code et du nom de domaine, puis inventaire complet des contenus : 6 catégories, 29 pages projets.</p>
+      </li>
+      <li class="step">
+        <span class="step-num mono">02</span>
+        <h3 class="display">Direction artistique</h3>
+        <p>Une ambiance « brume » bleu-charbon avec du grain, et un lettrage géométrique dessiné sur mesure pour le titre.</p>
+      </li>
+      <li class="step">
+        <span class="step-num mono">03</span>
+        <h3 class="display">Développement</h3>
+        <p>Next.js et TypeScript : pages catégories, pages projets, visionneuse, vidéos, menu mobile. Rapide et entièrement responsive.</p>
+      </li>
+      <li class="step">
+        <span class="step-num mono">04</span>
+        <h3 class="display">Mise en ligne</h3>
+        <p>Déploiement sur Vercel, reprise du domaine paulhivert.com, redirections et HTTPS.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+
+
+<section class="chapter shot shot-desktop">
+  <div class="wrap shot-inner">
+    <div class="browser">
+          <div class="browser-bar"><span></span><span></span><span></span><p class="mono">paulhivert.com</p></div>
+          <img src="assets/img/works/ph-1.jpg" alt="Portfolio de Paul Hivert, capture d'écran" loading="lazy">
+        </div>
+    <p class="display shot-caption">Un accueil sobre : un nom, un métier, et l'envie de faire défiler.</p>
+  </div>
+</section>
+<section class="chapter shot shot-desktop">
+  <div class="wrap shot-inner">
+    <div class="browser">
+          <div class="browser-bar"><span></span><span></span><span></span><p class="mono">paulhivert.com</p></div>
+          <img src="assets/img/works/ph-2.jpg" alt="Portfolio de Paul Hivert, capture d'écran" loading="lazy">
+        </div>
+    <p class="display shot-caption">Chaque catégorie a sa page, avec les projets présentés en grand format.</p>
+  </div>
+</section>
+<section class="chapter shot shot-desktop">
+  <div class="wrap shot-inner">
+    <div class="browser">
+          <div class="browser-bar"><span></span><span></span><span></span><p class="mono">paulhivert.com</p></div>
+          <img src="assets/img/works/ph-3.jpg" alt="Portfolio de Paul Hivert, capture d'écran" loading="lazy">
+        </div>
+    <p class="display shot-caption">Les visuels prennent toute la place : le site s'efface derrière le travail.</p>
+  </div>
+</section>
+<section class="chapter shot shot-mobile">
+  <div class="wrap shot-inner">
+    <div class="phone"><img src="assets/img/works/ph-mobile.jpg" alt="Portfolio de Paul Hivert, vue mobile" loading="lazy"></div>
+    <p class="display shot-caption">Sur mobile, la même ambiance, sans compromis.</p>
+  </div>
+</section>
+
+
+<section class="page others">
+  <div class="wrap">
+    <h2 class="display others-title">Autres projets</h2>
+    <div class="works">
+      <article class="work" data-cat="web">
+        <div class="work-visual v1 has-logo">
+          <span class="tag">Web & Apps</span>
+          <span class="work-brand" style="background: linear-gradient(135deg, #1f1168, #7655ca)" aria-hidden="true"></span><span class="work-logo" style="--m: url(../img/clients/cupidex.png); --w: 1.378; aspect-ratio: 1.899" aria-hidden="true"></span><img class="work-logo work-logo-color" src="assets/img/clients/couleur/cupidex.png" alt="" style="--w: 1.378; aspect-ratio: 1.899" loading="lazy">
+        </div>
+        <h3 class="display"><a href="projet-cupidex-app.html">Application Cupidex <span aria-hidden="true">→</span></a></h3>
+        <p class="mono en-cours">En cours</p>
+      </article>
+      <article class="work" data-cat="web">
+        <div class="work-visual v2 has-logo">
+          <span class="tag">Web & Apps</span>
+          <span class="work-brand" style="background: linear-gradient(135deg, #1f1168, #7655ca)" aria-hidden="true"></span><span class="work-logo" style="--m: url(../img/clients/cupidex.png); --w: 1.378; aspect-ratio: 1.899" aria-hidden="true"></span><img class="work-logo work-logo-color" src="assets/img/clients/couleur/cupidex.png" alt="" style="--w: 1.378; aspect-ratio: 1.899" loading="lazy">
+        </div>
+        <h3 class="display"><a href="projet-cupidex.html">Site de lancement Cupidex <span aria-hidden="true">→</span></a></h3>
+        <p class="mono">Juillet 2026</p>
+      </article>
+    </div>
+    <nav class="others-nav mono">
+      <a href="works.html">← Tous les projets</a>
+      <a href="contact.html">Un projet similaire ? Parlons-en →</a>
+    </nav>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <a class="footer-logo" href="index.html" aria-label="Frostbird — accueil"><span class="logo-picto " role="img" aria-label="Frostbird"></span><span class="logo-word " role="img" aria-label="Frostbird"></span></a>
+    <div>
+      <h4>Navigation</h4>
+      <a href="prestations.html">Prestations</a>
+      <a href="works.html">Works</a>
+      <a href="index.html#references">Références</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div>
+      <h4>Légal</h4>
+      <a href="mentions-legales.html">Mentions légales</a>
+      <a href="mentions-legales.html#confidentialite">Politique de confidentialité</a>
+      <a href="mentions-legales.html#cookies">Gestion des cookies</a>
+      <a href="mentions-legales.html#cgu">CGU</a>
+    </div>
+    <div>
+      <h4>Éditeur</h4>
+      <p>FROSTBIRD<br>Société en cours d'immatriculation<br><a href="mailto:hello@frostbird.fr">hello@frostbird.fr</a></p>
+    </div>
+  </div>
+  <div class="footer-social"><a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Behance</a><a href="#">TikTok</a></div>
+  <p class="footer-copy">© 2026 Frostbird — Tous droits réservés.</p>
+</footer>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
