@@ -36,9 +36,10 @@ METIERS = [
     ("photo", "Photographie", "Portraits, produits, reportages, événements. Des images qui racontent votre marque."),
 ]
 CLIENTS = [
-    # (nom, fichier dans assets/img/clients — logo monochrome utilisé en masque, ratio largeur/hauteur)
+    # (nom, fichier dans assets/img/clients — logo monochrome utilisé en masque, ratio largeur/hauteur
+    #  [, échelle : correction à l'œil pour les logos aux traits fins qui paraissent plus petits])
     ("Chikin Bang", "chikin-bang.png", 1.633),
-    ("Cupidex", "cupidex.png", 1.295),
+    ("Cupidex", "cupidex.png", 1.295, 1.3),
     ("Gomu", "gomu.png", 1.093),
     ("Birdz Hot Chicken", "birdz.png", 1.0),
     ("First Touch", "first-touch.svg", 2.057),
@@ -539,11 +540,11 @@ def page(fichier, titre, body, active="", classe="", retour=None):
 # --- Pages -------------------------------------------------------------------
 def accueil():
     metiers = "".join(f'<li><a href="prestation-{k}.html">{t}</a></li>' for k, t, _ in METIERS)
-    # surface égale pour tous les logos : largeur ∝ √ratio
+    # surface égale pour tous les logos : largeur ∝ √ratio (× échelle éventuelle)
     clients = "".join(
-        f'<li class="client" style="--m: url(../img/clients/{f}); --w: {r ** .5:.3f}; aspect-ratio: {r}">'
+        f'<li class="client" style="--m: url(../img/clients/{f}); --w: {r ** .5 * (e[0] if e else 1):.3f}; aspect-ratio: {r}">'
         f'<span class="sr">{n}</span></li>'
-        for n, f, r in CLIENTS
+        for n, f, r, *e in CLIENTS
     )
     body = f"""
 <section class="chapter hero">
