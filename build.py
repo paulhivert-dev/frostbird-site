@@ -39,7 +39,7 @@ CLIENTS = [
     # (nom, fichier dans assets/img/clients — logo monochrome utilisé en masque, ratio largeur/hauteur
     #  [, échelle : correction à l'œil pour les logos aux traits fins qui paraissent plus petits])
     ("Chikin Bang", "chikin-bang.png", 1.633),
-    ("Cupidex", "cupidex.png", 1.295, 1.3),
+    ("Cupidex", "cupidex.png", 1.295, 1.2),
     ("Gomu", "gomu.png", 1.093),
     ("Birdz Hot Chicken", "birdz.png", 1.0),
     ("First Touch", "first-touch.svg", 2.057),
