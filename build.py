@@ -38,7 +38,7 @@ METIERS = [
 CLIENTS = [
     # (nom, fichier dans assets/img/clients — logo monochrome utilisé en masque, ratio largeur/hauteur)
     ("Chikin Bang", "chikin-bang.png", 1.633),
-    ("Cupidex", "cupidex.svg", 1.279),
+    ("Cupidex", "cupidex.png", 1.899),
     ("Gomu", "gomu.png", 1.093),
     ("Birdz Hot Chicken", "birdz.png", 1.0),
     ("First Touch", "first-touch.svg", 2.057),
