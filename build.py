@@ -18,6 +18,9 @@ from contenu_portfolio import PORTFOLIO
 from contenu_prestations import PAGES
 
 OUT = Path(__file__).parent / "public"
+# Images d'origine (JPG/PNG pleine qualité) : hors du dossier publié. Le build en tire des WebP
+# dans public/ (cf. optimiser_medias) — seules les versions optimisées partent en ligne.
+MEDIA = Path(__file__).parent / "media"
 
 # --- Contenu (provisoire : à remplacer par les vrais textes) -----------------
 AGENCE = "Frostbird"
@@ -358,6 +361,54 @@ def contact_section(titre_tag="h2"):
 </section>"""
 
 
+def vignette(im):
+    """Nom de la vignette de galerie (800 px de large) ; générée par optimiser_medias."""
+    return im.rsplit(".", 1)[0] + "-800.webp"
+
+
+def _webp(src, dst, largeur=None):
+    """Convertit une image de media/ en WebP dans public/ (seulement si elle a changé)."""
+    from PIL import Image
+    if dst.exists() and dst.stat().st_mtime >= src.stat().st_mtime:
+        return
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    with Image.open(src) as im:
+        im = im.convert("RGBA") if im.mode in ("RGBA", "LA", "P") else im.convert("RGB")
+        if largeur and im.width > largeur:
+            im = im.resize((largeur, round(im.height * largeur / im.width)), Image.LANCZOS)
+        im.save(dst, "WEBP", quality=80, method=5)
+
+
+def optimiser_medias(html):
+    """Remplace chaque image de media/ par sa version WebP (générée au besoin) ;
+    vidéos et SVG sont copiés tels quels. Les vignettes « -800.webp » partent de l'original."""
+    import re, shutil
+
+    def copie(src, dst):
+        if not dst.exists() or dst.stat().st_mtime < src.stat().st_mtime:
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, dst)
+
+    def remplace(m):
+        dossier, chemin = m.group(1), m.group(2)
+        public = OUT / "assets/img" / dossier
+        if chemin.endswith("-800.webp"):
+            base = chemin[: -len("-800.webp")]
+            orig = next((MEDIA / dossier).glob(base.replace("[", "[[]") + ".*"))
+            _webp(orig, public / chemin, 800)
+            return f"assets/img/{dossier}/{chemin}"
+        if chemin.endswith((".mp4", ".svg")):
+            copie(MEDIA / dossier / chemin, public / chemin)
+            return f"assets/img/{dossier}/{chemin}"
+        webp = chemin.rsplit(".", 1)[0] + ".webp"
+        _webp(MEDIA / dossier / chemin, public / webp, 2000)
+        return f"assets/img/{dossier}/{webp}"
+
+    motif = r'assets/img/(works|clients/couleur)/([^"\'\s)]+?(?:-800\.webp|\.jpe?g|\.png|\.mp4|\.svg))'
+    html = re.sub(motif, remplace, html)
+    return html.replace("<img ", '<img decoding="async" ')
+
+
 def page(fichier, titre, body, active="", classe="", retour=None):
     full_title = f"{titre} — {AGENCE}" if titre else f"{AGENCE} — {BASELINE}"
     html = f"""<!doctype html>
@@ -394,7 +445,7 @@ def page(fichier, titre, body, active="", classe="", retour=None):
 </body>
 </html>
 """
-    (OUT / fichier).write_text(html, encoding="utf-8")
+    (OUT / fichier).write_text(optimiser_medias(html), encoding="utf-8")
 
 
 # --- Pages -------------------------------------------------------------------
@@ -508,11 +559,11 @@ def bloc_prestation(b, k):
       <p class="display pr-l2">{b["texte"]}</p>
       <p class="pr-detail">{b["detail"]}</p>
     </div>
-    <figure class="photo visuel" style="--r: {w / h:.4f}"><img src="{W}{b["img"]}" alt="" loading="lazy" width="{w}" height="{h}"></figure>
+    <figure class="photo visuel" style="--r: {w / h:.4f}"><img src="{W}{vignette(b["img"])}" alt="" loading="lazy" width="{w}" height="{h}"></figure>
   </div>
 </section>"""
     if t == "bande":
-        imgs = "".join(f'<img src="{W}{im}" alt="" loading="lazy" {taille(im)}>' for im in b["images"])
+        imgs = "".join(f'<img src="{W}{vignette(im)}" alt="" loading="lazy" {taille(im)}>' for im in b["images"])
         return f"""
 <section class="pr pr-bande" aria-label="Quelques affiches">
   <div class="pr-defile">{imgs}{imgs}</div>
@@ -652,7 +703,7 @@ def works():
 
 def dimensions(im):
     from PIL import Image
-    with Image.open(OUT / "assets/img/works" / im) as i:
+    with Image.open(MEDIA / "works" / im) as i:
         return i.width, i.height
 
 
@@ -704,7 +755,7 @@ def video_youtube(url, titre):
 def taille(im):
     """width/height réels : la place est réservée avant le chargement (pas de saut de mise en page)."""
     from PIL import Image
-    with Image.open(OUT / "assets/img/works" / im) as i:
+    with Image.open(MEDIA / "works" / im) as i:
         return f'width="{i.width}" height="{i.height}"'
 
 
@@ -714,7 +765,7 @@ def galerie(images, titre, ligne=False, unite="photos"):
         return ""
     vignettes = "".join(
         f'<li><button class="gal-item" data-src="assets/img/works/{im}" aria-label="Agrandir le visuel {n}">'
-        f'<img src="assets/img/works/{im}" alt="{titre} — visuel {n}" loading="lazy" {taille(im)}></button></li>'
+        f'<img src="assets/img/works/{vignette(im)}" alt="{titre} — visuel {n}" loading="lazy" {taille(im)}></button></li>'
         for n, im in enumerate(images, 1))
     if ligne:
         grille = f"""<div class="gal-row-wrap">
@@ -827,7 +878,7 @@ def etude(slug):
     </nav>
   </div>
 </section>"""
-    page(f"projet-{slug}.html", titre, body, "works", classe="snap", retour="works.html")
+    page(f"projet-{slug}.html", titre, body, "works", retour="works.html")
 
 
 def contact():
