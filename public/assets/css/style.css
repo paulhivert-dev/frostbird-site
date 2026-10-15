@@ -5,6 +5,10 @@
   --creme: #fce2d1;
   --rouge: #f92323;
   --nav-h: 64px;
+  /* Sur iPhone (viewport-fit=cover), l'en-tête descend jusque sous l'heure et la batterie :
+     --haut = hauteur totale de l'en-tête, zone du haut de l'écran comprise. */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --haut: calc(var(--nav-h) + var(--safe-top));
   --gutter: clamp(16px, 4vw, 48px);
   --display: "Bricolage Grotesque", Impact, sans-serif;
   --sans: "Geist", system-ui, sans-serif;
@@ -12,7 +16,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+html { scroll-behavior: smooth; scroll-padding-top: var(--haut); background: var(--creme); }
 html.snap { scroll-snap-type: y proximity; }
 body {
   margin: 0;
@@ -60,9 +64,9 @@ img { max-width: 100%; display: block; }
 /* ---------- Navigation ---------- */
 .nav {
   position: sticky; top: 0; z-index: 50;
-  height: var(--nav-h);
+  height: var(--haut);
   display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
-  padding: 0 var(--gutter);
+  padding: var(--safe-top) max(var(--gutter), env(safe-area-inset-right, 0px)) 0 max(var(--gutter), env(safe-area-inset-left, 0px));
   background: var(--creme);
   border-bottom: 2px solid var(--bordeaux);
   font-family: var(--mono); font-size: 13px; letter-spacing: .1em; text-transform: uppercase;
@@ -84,7 +88,7 @@ img { max-width: 100%; display: block; }
 .nav-burger { display: none; }
 
 .menu {
-  position: fixed; inset: var(--nav-h) 0 0; z-index: 49;
+  position: fixed; inset: var(--haut) 0 0; z-index: 49;
   background: var(--bordeaux); color: var(--creme);
   display: flex; flex-direction: column; justify-content: space-between;
   padding: 32px var(--gutter) 40px;
@@ -114,7 +118,7 @@ img { max-width: 100%; display: block; }
 
 /* ---------- Sections plein écran ---------- */
 .chapter {
-  min-height: calc(100svh - var(--nav-h));
+  min-height: calc(100svh - var(--haut));
   display: flex; flex-direction: column; justify-content: center;
   position: relative;
   padding: 80px 0;
@@ -228,7 +232,7 @@ img { max-width: 100%; display: block; }
 .slogan p { margin: 0; display: inline-block; white-space: nowrap; font-size: 14vw; }
 
 /* ---------- Footer ---------- */
-.footer { background: var(--rouge); color: var(--bordeaux); padding: 56px var(--gutter) 24px; border-top: 10px solid var(--bordeaux); }
+.footer { background: var(--rouge); color: var(--bordeaux); padding: 56px var(--gutter) calc(24px + env(safe-area-inset-bottom, 0px)); border-top: 10px solid var(--bordeaux); }
 .footer-grid { max-width: 1360px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 40px; }
 .footer-logo { color: var(--creme); width: 160px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-decoration: none; }
 .footer-logo .logo-picto { width: 64%; }
@@ -312,7 +316,7 @@ img { max-width: 100%; display: block; }
 .legal h2 { font-size: 36px; margin: 0 0 12px; color: var(--rouge); }
 
 /* Page contact seule : pas de min-height sous la nav */
-body:has(main > .contact:only-child) .contact { min-height: calc(100svh - var(--nav-h)); }
+body:has(main > .contact:only-child) .contact { min-height: calc(100svh - var(--haut)); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -703,7 +707,7 @@ span.work-logo {
   .nav-brand { padding: 8px 0; }
 
   /* Menu plein écran : langue et e-mail juste sous les liens (pas cachés par la barre du navigateur) */
-  .menu { justify-content: flex-start; gap: 40px; height: calc(100dvh - var(--nav-h)); overflow-y: auto; }
+  .menu { justify-content: flex-start; gap: 40px; height: calc(100dvh - var(--haut)); overflow-y: auto; padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); }
   .menu nav a { padding: 4px 0; }
   .menu-bas { flex-direction: column; align-items: flex-start; gap: 18px; padding-top: 24px; border-top: 1.5px solid rgba(252, 226, 209, .2); }
   .menu .nav-lang a { display: inline-grid; place-items: center; min-width: 44px; min-height: 44px; }

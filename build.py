@@ -509,7 +509,8 @@ def page(fichier, titre, body, active="", classe="", retour=None):
 <html lang="fr" class="{classe}">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fce2d1">
 <title>{full_title}</title>
 <meta name="description" content="{AGENCE}, {BASELINE.lower()} : {', '.join(t.lower() for _, t, _ in METIERS)}.">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
