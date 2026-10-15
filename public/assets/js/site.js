@@ -37,13 +37,15 @@ filtres.forEach((btn) =>
   })
 );
 
-// Formulaire de contact (pas encore branché : validation + message seulement)
+// Formulaire de contact : validation, puis envoi par e-mail via FormSubmit (adresse dans data-envoi)
 const EN = document.documentElement.lang === "en";
 const T = EN
   ? { consent: "Please tick the consent box.", requis: "Please fill in the required fields (*).",
-      merci: "Thank you! Your message is on its way, we'll get back to you very soon." }
+      envoi: "Sending…", merci: "Thank you! Your message is on its way, we'll get back to you very soon.",
+      erreur: "Sorry, the message could not be sent. Please email us directly at " }
   : { consent: "Merci de cocher la case de consentement.", requis: "Merci de remplir les champs obligatoires (*).",
-      merci: "Merci ! Votre message est bien parti, on revient vers vous très vite." };
+      envoi: "Envoi en cours…", merci: "Merci ! Votre message est bien parti, on revient vers vous très vite.",
+      erreur: "Désolé, le message n'a pas pu partir. Écrivez-nous directement à " };
 const form = document.querySelector(".form");
 if (form) {
   const besoin = new URLSearchParams(location.search).get("besoin");
@@ -52,7 +54,8 @@ if (form) {
     if (box) box.checked = true;
   }
   const status = form.querySelector(".form-status");
-  form.addEventListener("submit", (e) => {
+  const bouton = form.querySelector('button[type="submit"]');
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     let firstBad = null;
     form.querySelectorAll("[required]").forEach((el) => {
@@ -66,9 +69,35 @@ if (form) {
       firstBad.focus();
       return;
     }
-    status.className = "form-status full ok";
-    status.textContent = T.merci;
-    form.reset();
+    const d = new FormData(form);
+    if (d.get("_honey")) return; // champ invisible rempli : robot
+    const besoins = d.getAll("besoin").map((v) => form.querySelector(`input[value="${v}"]`).nextElementSibling.textContent);
+    const donnees = {
+      Nom: d.get("nom"), Email: d.get("email"), "Téléphone": d.get("tel") || "—",
+      Entreprise: d.get("entreprise") || "—", Besoin: besoins.join(", ") || "—", Message: d.get("message"),
+      Langue: EN ? "anglais" : "français", Page: location.href,
+      _subject: `Nouveau message du site — ${d.get("nom")}`, _replyto: d.get("email"), _template: "table",
+    };
+    status.className = "form-status full";
+    status.textContent = T.envoi;
+    bouton.disabled = true;
+    try {
+      const r = await fetch(form.dataset.envoi, {
+        method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(donnees),
+      });
+      const rep = await r.json().catch(() => ({}));
+      if (!r.ok || rep.success === false || rep.success === "false") throw new Error(rep.message || r.status);
+      status.className = "form-status full ok";
+      status.textContent = T.merci;
+      form.reset();
+    } catch (err) {
+      const mail = form.dataset.envoi.split("/").pop();
+      status.className = "form-status full err";
+      status.textContent = T.erreur + mail + ".";
+    } finally {
+      bouton.disabled = false;
+    }
   });
 }
 

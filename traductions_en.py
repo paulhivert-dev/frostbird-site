@@ -672,8 +672,8 @@ EN = {
     # ------------------------------------------------------------------ légal
     "Éditeur du site : Frostbird, société en cours d'immatriculation. Contact : contact.frostbird@gmail.com. Hébergeur : Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.":
         "Site publisher: Frostbird, company being registered. Contact: contact.frostbird@gmail.com. Host: Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, United States.",
-    "Les informations envoyées via le formulaire de contact servent uniquement à répondre à votre demande. Elles ne sont ni revendues ni transmises à des tiers. Texte à compléter.":
-        "Information sent through the contact form is used only to answer your request. It is never sold or passed on to third parties. Text to be completed.",
+    "Les informations envoyées via le formulaire de contact servent uniquement à répondre à votre demande. Elles sont transmises par e-mail à Frostbird via le service FormSubmit (formsubmit.co), puis ne sont ni revendues ni transmises à d'autres tiers. Texte à compléter.":
+        "Information sent through the contact form is used only to answer your request. It is emailed to Frostbird via the FormSubmit service (formsubmit.co), and is never sold or passed on to any other third party. Text to be completed.",
     "Ce site n'utilise pas de cookies de suivi. Texte à compléter.": "This site does not use tracking cookies. Text to be completed.",
     "Conditions générales d'utilisation": "Terms of use",
     "Texte à compléter.": "Text to be completed.",

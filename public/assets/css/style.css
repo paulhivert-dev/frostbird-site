@@ -747,3 +747,4 @@ span.work-logo {
   .hero-metiers li { font-size: 34px; }
   .contact-mail { font-size: 19px; }
 }
+.btn:disabled { opacity: .6; cursor: progress; transform: none; }

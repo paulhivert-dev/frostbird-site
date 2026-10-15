@@ -365,7 +365,8 @@ def contact_section(titre_tag="h2"):
   <div class="wrap">
     <{titre_tag} class="display contact-title">On en parle&nbsp;?</{titre_tag}>
     <a class="contact-mail display" href="mailto:{EMAIL}">{EMAIL}</a>
-    <form class="form" novalidate>
+    <form class="form" novalidate data-envoi="https://formsubmit.co/ajax/{EMAIL}">
+      <input type="text" name="_honey" class="sr" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="field"><label for="f-nom">Nom *</label><input id="f-nom" name="nom" placeholder="Votre nom" required autocomplete="name"></div>
       <div class="field"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" placeholder="vous@entreprise.com" required autocomplete="email"></div>
       <div class="field"><label for="f-tel">Téléphone</label><input id="f-tel" name="tel" type="tel" placeholder="06 00 00 00 00" autocomplete="tel"></div>
@@ -984,7 +985,7 @@ def contact():
 def legal():
     blocs = [
         ("mentions", "Mentions légales", f"Éditeur du site : {AGENCE}, société en cours d'immatriculation. Contact : {EMAIL}. Hébergeur : Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis."),
-        ("confidentialite", "Politique de confidentialité", "Les informations envoyées via le formulaire de contact servent uniquement à répondre à votre demande. Elles ne sont ni revendues ni transmises à des tiers. Texte à compléter."),
+        ("confidentialite", "Politique de confidentialité", "Les informations envoyées via le formulaire de contact servent uniquement à répondre à votre demande. Elles sont transmises par e-mail à Frostbird via le service FormSubmit (formsubmit.co), puis ne sont ni revendues ni transmises à d'autres tiers. Texte à compléter."),
         ("cookies", "Gestion des cookies", "Ce site n'utilise pas de cookies de suivi. Texte à compléter."),
         ("cgu", "Conditions générales d'utilisation", "Texte à compléter."),
     ]
