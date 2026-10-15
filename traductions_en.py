@@ -670,8 +670,8 @@ EN = {
     "Nos projets en photographie": "Our photography work",
 
     # ------------------------------------------------------------------ légal
-    "Éditeur du site : Frostbird, société en cours d'immatriculation. Contact : hello@frostbird.fr. Hébergeur : Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.":
-        "Site publisher: Frostbird, company being registered. Contact: hello@frostbird.fr. Host: Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, United States.",
+    "Éditeur du site : Frostbird, société en cours d'immatriculation. Contact : contact.frostbird@gmail.com. Hébergeur : Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.":
+        "Site publisher: Frostbird, company being registered. Contact: contact.frostbird@gmail.com. Host: Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, United States.",
     "Les informations envoyées via le formulaire de contact servent uniquement à répondre à votre demande. Elles ne sont ni revendues ni transmises à des tiers. Texte à compléter.":
         "Information sent through the contact form is used only to answer your request. It is never sold or passed on to third parties. Text to be completed.",
     "Ce site n'utilise pas de cookies de suivi. Texte à compléter.": "This site does not use tracking cookies. Text to be completed.",

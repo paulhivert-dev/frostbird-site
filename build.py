@@ -27,7 +27,7 @@ MEDIA = Path(__file__).parent / "media"
 AGENCE = "Frostbird"
 BASELINE = "Agence créative"
 SLOGAN = "Born to fly"
-EMAIL = "hello@frostbird.fr"
+EMAIL = "contact.frostbird@gmail.com"
 METIERS = [
     # (clé, titre, description courte)
     ("branding", "Branding", "Logos, identités visuelles, chartes graphiques. Des marques qu'on reconnaît de loin."),
@@ -268,7 +268,9 @@ ETUDES.update({
     for e in PORTFOLIO
 })
 
-RESEAUX = [("Instagram", "#"), ("LinkedIn", "#"), ("Behance", "#"), ("TikTok", "#")]
+# Réseaux sociaux du pied de page : vide pour l'instant (comptes pas encore prêts).
+# Format : [("Instagram", "https://instagram.com/…"), ("LinkedIn", "https://…"), …]
+RESEAUX = []
 
 METIER_NOM = {k: t for k, t, _ in METIERS}
 
@@ -348,7 +350,7 @@ def footer():
       <p>{AGENCE.upper()}<br>Société en cours d'immatriculation<br><a href="mailto:{EMAIL}">{EMAIL}</a></p>
     </div>
   </div>
-  <div class="footer-social">{reseaux}</div>
+  {f'<div class="footer-social">{reseaux}</div>' if RESEAUX else ""}
   <p class="footer-copy">© 2026 {AGENCE} — Tous droits réservés.</p>
 </footer>"""
 
@@ -464,7 +466,7 @@ NOMS_PROPRES = {
     "Happy Propaganda", "First Touch", "Le Charles", "Oh Damned", "Somar", "Chikin Bang", "Deezer Premium",
     "Atlantic Bateaux Piriac", "Atlantic Bateaux", "Paul Hivert", "Quentin Merlin", "Ilan Djadja", "Aïman",
     "Aïman & Ilan", "UEFA Youth League", "Europa League", "Birdz Hot Chicken", "Instagram", "LinkedIn",
-    "Behance", "TikTok", "Works", "hello@frostbird.fr", "cupidex.fr", "paulhivert.com", "Born to fly",
+    "Behance", "TikTok", "Works", "contact.frostbird@gmail.com", "cupidex.fr", "paulhivert.com", "Born to fly",
     "Tom Mabon, Louis Leroux & Mathis Philippe (FC Nantes)", "Storyboard", "Branding", "Packaging",
     "Naming", "Illustration", "Concept", "Brief", "Composition", "Animation", "Menu", "Le Somar",
     "Motion design", "UI design", "Concept & UX", "Date", "Navigation", "Contact", "Web & Apps",
