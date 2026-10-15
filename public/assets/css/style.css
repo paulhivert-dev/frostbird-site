@@ -31,7 +31,9 @@ body {
 /* grain léger : une petite image de bruit fixe, sur son propre calque.
    (Sans mix-blend-mode ni filtre SVG : le navigateur n'a rien à recalculer pendant le défilement.) */
 body::after {
-  content: ""; position: fixed; inset: 0; z-index: 100; pointer-events: none;
+  /* commence sous la barre de menu : Safari iOS 26 colore la zone de l'heure d'après le premier
+     élément fixe en haut de l'écran, qui doit donc être la barre crème et pas ce calque transparent */
+  content: ""; position: fixed; inset: var(--haut) 0 0; z-index: 100; pointer-events: none;
   background: url(../img/grain.png) repeat; opacity: .045;
   transform: translateZ(0);
 }
