@@ -396,11 +396,16 @@ body:has(main > .contact:only-child) .contact { min-height: calc(100svh - var(--
 .shot-caption { font-size: clamp(24px, 3.2vw, 44px); text-align: center; max-width: 960px; margin: 0; }
 .shot-mobile .shot-inner { flex-direction: row; justify-content: center; gap: clamp(32px, 6vw, 96px); }
 .shot-mobile .shot-caption { text-align: left; max-width: 480px; }
-.phone {
-  width: min(72vw, 300px, (100svh - 200px) * 0.462 + 20px); flex-shrink: 0; padding: 10px; border-radius: 42px; /* tient dans l'écran */
-  background: var(--bordeaux); box-shadow: 0 24px 60px -20px rgba(59, 0, 22, .55);
+.phone { /* cadre d'iPhone : bord, coins et île en % de la largeur → mêmes proportions à toutes les tailles */
+  position: relative; width: min(72vw, 300px, (100svh - 200px) * 0.462 + 20px); flex-shrink: 0; /* tient dans l'écran */
+  background: var(--bordeaux); border-radius: 15% / 7.2%; line-height: 0;
+  box-shadow: 0 24px 60px -20px rgba(59, 0, 22, .55), inset 0 0 0 1.5px rgba(252, 226, 209, .14);
 }
-.phone img { width: 100%; border-radius: 32px; aspect-ratio: 375 / 812; object-fit: cover; object-position: top; }
+.phone img { width: 93%; margin: 3.5%; border-radius: 11.3% / 5.2%; aspect-ratio: 375 / 812; object-fit: cover; object-position: top; }
+.pr-phone-vide::after { /* Dynamic Island (seulement sur l’écran vide : sur les captures, elle masquerait le logo) */
+  content: ""; position: absolute; top: 0; left: 35%; width: 30%; aspect-ratio: 3.4 / 1; margin-top: 6%;
+  border-radius: 999px; background: #000;
+}
 @media (max-width: 760px) {
   .shot-mobile .shot-inner { flex-direction: column; }
   .shot-mobile .shot-caption { text-align: center; }
@@ -658,6 +663,11 @@ span.work-logo {
 .pr-tels { display: flex; gap: clamp(16px, 3vw, 40px); justify-content: center; }
 .pr-tels .phone { width: min(28vw, 240px, (100svh - 300px) * .462 + 20px); }
 .pr-tels .phone:nth-child(2) { transform: translateY(-24px); }
+@media (max-width: 760px) {
+  .pr-tels { gap: 12px; }
+  .pr-tels .phone { width: min(43vw, 220px); }
+  .pr-tels .phone:nth-child(2) { transform: translateY(-16px); }
+}
 
 /* Photographie — ce qu'on voit */
 .pr-regard { position: relative; color: var(--creme); background: var(--bordeaux); }
