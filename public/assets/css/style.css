@@ -686,5 +686,64 @@ span.work-logo {
 .nav-lang a { text-decoration: none; }
 .nav-lang a:hover { color: var(--rouge); }
 .menu-bas { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-.menu .nav-lang { display: flex; gap: 8px; font-family: var(--mono); font-size: 15px; letter-spacing: .1em; }
+.menu .nav-lang { display: flex; align-items: center; gap: 2px; font-family: var(--mono); font-size: 15px; letter-spacing: .1em; }
 .menu .nav-lang a[aria-current] { color: var(--rouge); }
+
+/* =====================================================================
+   Mobile (≤ 760 px) : navigation, zones de clic (≥ 44 px), lisibilité
+   ===================================================================== */
+@media (max-width: 760px) {
+  /* En-tête : flèche retour visible sur les pages projet / prestation */
+  .nav:has(.nav-gauche) { grid-template-columns: auto 1fr auto; }
+  .nav-gauche { display: flex; }
+  .nav-gauche .nav-lang { display: none; }
+  .nav-back { display: inline-grid; place-items: center; width: 44px; height: 44px; margin-left: -12px; font-size: 0; }
+  .nav-back span { font-size: 22px; }
+  .nav:has(.nav-gauche) .nav-brand { grid-column: 2; }
+  .nav-brand { padding: 8px 0; }
+
+  /* Menu plein écran : langue et e-mail juste sous les liens (pas cachés par la barre du navigateur) */
+  .menu { justify-content: flex-start; gap: 40px; height: calc(100dvh - var(--nav-h)); overflow-y: auto; }
+  .menu nav a { padding: 4px 0; }
+  .menu-bas { flex-direction: column; align-items: flex-start; gap: 18px; padding-top: 24px; border-top: 1.5px solid rgba(252, 226, 209, .2); }
+  .menu .nav-lang a { display: inline-grid; place-items: center; min-width: 44px; min-height: 44px; }
+  .menu-mail { padding: 10px 0; word-break: break-all; }
+
+  /* Zones de clic */
+  .hero-down { display: grid; place-items: center; width: 48px; height: 48px; }
+  .contact-mail { padding: 12px 0; margin-bottom: 40px; }
+  .pr-ticket p { font-size: 12px; }
+  .chip-btn, .chip span { min-height: 44px; display: inline-flex; align-items: center; }
+  .others-nav { flex-direction: column; gap: 6px; }
+  .others-nav a { display: inline-block; padding: 12px 0; align-self: flex-start; }
+  .big-link { padding: 8px 0; }
+
+  /* Lisibilité : 12 px minimum */
+  .field label, .field legend, .footer h4, .footer-copy, .case-meta dt, .pr-source, .compare-label, .gal-count { font-size: 12px; }
+
+  /* Pied de page : une seule colonne, liens confortables */
+  .footer { padding-top: 48px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-logo { justify-self: center; width: 140px; }
+  .footer-grid > div a { padding: 10px 0; font-size: 14px; }
+  .footer-grid p { font-size: 13px; }
+  .footer-grid p a { display: inline-block !important; padding: 10px 0; word-break: break-all; }
+
+  /* Galeries : deux colonnes plutôt qu'une interminable */
+  .gal-grid { columns: 2; column-gap: 8px; }
+  .gal-grid li { margin-bottom: 8px; }
+
+  /* Photographie « ce qu'on voit » : texte en bas, sur un dégradé vertical */
+  .pr-regard { justify-content: flex-end; padding-bottom: 48px; }
+  .pr-regard::after { background: linear-gradient(0deg, rgba(30, 0, 11, .9) 0%, rgba(30, 0, 11, .55) 45%, transparent 75%); }
+
+  /* Étapes du processus : un peu plus d'air entre les blocs */
+  .steps { gap: 32px; }
+
+  /* Visionneuse : flèches plus grandes, en bas, faciles au pouce */
+  .lightbox button { width: 56px; height: 56px; }
+}
+@media (max-width: 380px) {
+  .hero-metiers li { font-size: 34px; }
+  .contact-mail { font-size: 19px; }
+}

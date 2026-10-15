@@ -125,3 +125,15 @@ document.querySelectorAll(".gal-row-wrap").forEach((w) => {
   row.querySelectorAll("img").forEach((i) => i.addEventListener("load", maj));
   maj();
 });
+
+// Visionneuse : glisser le doigt vers la gauche / la droite pour changer de photo
+if (lightbox) {
+  let x0 = null;
+  lightbox.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  lightbox.addEventListener("touchend", (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 50) lightbox.querySelector(dx < 0 ? ".lb-next" : ".lb-prev").click();
+    x0 = null;
+  }, { passive: true });
+}
