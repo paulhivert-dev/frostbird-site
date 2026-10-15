@@ -92,6 +92,7 @@ if (form) {
       status.textContent = T.merci;
       form.reset();
     } catch (err) {
+      console.warn("Formulaire non envoyé :", err.message); // ex. « This form needs Activation » (FormSubmit)
       const mail = form.dataset.envoi.split("/").pop();
       status.className = "form-status full err";
       status.textContent = T.erreur + mail + ".";
