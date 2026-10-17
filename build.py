@@ -270,6 +270,12 @@ ETUDES.update({
 
 # Réseaux sociaux du pied de page. Format : [("Instagram", "https://instagram.com/…"), ("LinkedIn", "https://…"), …]
 RESEAUX = [("Instagram", "https://www.instagram.com/frostbird_agency/")]
+# Icônes des réseaux (couleur = currentColor) ; un réseau sans icône s'affiche en texte.
+ICONES = {
+    "Instagram": '<svg viewBox="0 0 24 24" width="32" height="32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">'
+                 '<rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/>'
+                 '<circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg>',
+}
 
 METIER_NOM = {k: t for k, t, _ in METIERS}
 
@@ -325,7 +331,8 @@ def header(active, retour=None, fichier="index.html"):
 
 
 def footer():
-    reseaux = "".join(f'<a href="{u}" target="_blank" rel="noopener">{n}</a>' for n, u in RESEAUX)
+    reseaux = "".join(f'<a href="{u}" target="_blank" rel="noopener" aria-label="{AGENCE} sur {n}" title="{n}">{ICONES.get(n, n)}</a>'
+                      for n, u in RESEAUX)
     return f"""
 <footer class="footer">
   <div class="footer-grid">

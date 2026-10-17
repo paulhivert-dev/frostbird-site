@@ -71,6 +71,7 @@ EN = {
     "Ils ont confié leur image à Frostbird": "They trusted Frostbird with their image",
     "Nos projets": "Our work",
     "On en parle ?": "Shall we talk?",
+    "Frostbird sur Instagram": "Frostbird on Instagram",
     "Born to fly": "Born to fly",
 
     # ------------------------------------------------------------------ formulaire de contact
