@@ -248,8 +248,8 @@ img { max-width: 100%; display: block; }
 .footer-grid p { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; margin: 0; line-height: 1.8; }
 .footer-grid p a { display: inline !important; text-transform: none; }
 .footer-social { max-width: 1360px; margin: 48px auto 0; display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
-.footer-social a { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; border: 2px solid; text-decoration: none; transition: background .2s, color .2s, transform .2s; }
-.footer-social a:hover { background: var(--bordeaux); color: var(--creme); transform: translateY(-2px); }
+.footer-social a { color: var(--creme); display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; border: 2px solid; text-decoration: none; transition: background .2s, color .2s, transform .2s; }
+.footer-social a:hover { background: var(--creme); color: var(--rouge); transform: translateY(-2px); }
 .footer-social svg { width: 28px; height: 28px; }
 .footer-copy { text-align: center; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; margin: 32px 0 0; opacity: .75; }
 @media (max-width: 860px) {
