@@ -268,9 +268,8 @@ ETUDES.update({
     for e in PORTFOLIO
 })
 
-# Réseaux sociaux du pied de page : vide pour l'instant (comptes pas encore prêts).
-# Format : [("Instagram", "https://instagram.com/…"), ("LinkedIn", "https://…"), …]
-RESEAUX = []
+# Réseaux sociaux du pied de page. Format : [("Instagram", "https://instagram.com/…"), ("LinkedIn", "https://…"), …]
+RESEAUX = [("Instagram", "https://www.instagram.com/frostbird_agency/")]
 
 METIER_NOM = {k: t for k, t, _ in METIERS}
 
@@ -326,7 +325,7 @@ def header(active, retour=None, fichier="index.html"):
 
 
 def footer():
-    reseaux = "".join(f'<a href="{u}">{n}</a>' for n, u in RESEAUX)
+    reseaux = "".join(f'<a href="{u}" target="_blank" rel="noopener">{n}</a>' for n, u in RESEAUX)
     return f"""
 <footer class="footer">
   <div class="footer-grid">
